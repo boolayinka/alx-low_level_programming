@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * main - prints its own opcodes
+ * main - function that convert a string to an integer
  * @s: string to convert
  * Return: int
  */
@@ -14,7 +14,7 @@ int _atoi(char *s)
 
 	while ((s[i] < '0' || s[i] > '9') && s[i] != 0)
 	{
-		if (s[i] == '_')
+		if (s[i] == '-')
 			signo *= -1;
 		i++;
 	}

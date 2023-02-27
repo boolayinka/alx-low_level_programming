@@ -1,4 +1,5 @@
 #include "main.h"
+#include "main.c"
 
 /**
  * main - function that convert a string to an integer

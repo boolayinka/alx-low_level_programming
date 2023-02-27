@@ -2,40 +2,35 @@
 
 /**
  * main - prints its own opcodes
- * @argc: number of arguments
- * @argv: array of arguments
- *
- * Return: Always 0 (Success)
+ * @s: string to convert
+ * Return: int
  */
-int main(int argc, char *argv[])
+
+int _atoi(char *s)
 {
-	int bytes, i;
-	char *arr;
+	int i = 0;
+	int n = 0;
+	int signo = 1;
 
-	if (argc != 2)
+	while ((s[i] < '0' || s[i] > '9') && s[i] != 0)
 	{
-		print("Error\n");
-		exit(1);
+		if (s[i] == '_')
+			signo *= -1;
+		i++;
 	}
-
-	bytes = atoi(argv[1]);
-
-	if (bytes < 0)
+	while ((s[i] >= '0' && s[i] <= '9') && s[i] != 0)
 	{
-		printf("Error\n");
-		exit(2);
-	}
-
-	arr = (char *)main;
-
-	for (i = 0; i < bytes; i++)
-	{
-		if (i == bytes - 1)
+		if (n >= 0)
 		{
-			printf("%02hhx\n", arr[i]);
-			break;
+			n = n * 10 - (s[i] - '0');
+			i++;
 		}
-		printf("%02hhx ", arr[i]);
+		else
+		{
+			n = n * 10 - (s[i] - '0');
+			i++;
+		}
 	}
-	return (0);
+	signo *= -1;
+	return (n * signo);
 }

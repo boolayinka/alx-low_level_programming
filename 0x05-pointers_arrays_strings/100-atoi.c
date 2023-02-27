@@ -1,44 +1,41 @@
 #include "main.h"
 
 /**
- * _atoi - converts a string to an integer
- * @s: string to be converted
+ * main - prints its own opcodes
+ * @argc: number of arguments
+ * @argv: array of arguments
  *
- * Return: the int converted from the string
+ * Return: Always 0 (Success)
  */
-int _atoi(char *s)
+int main(int argc, char *argv[])
 {
-	int i, d, n, len, f, digit;
+	int bytes, i;
+	char *arr;
 
-	i = 0;
-	d = 0;
-	n = 0;
-	len = 0;
-	f = 0;
-	digit = 0;
-
-	while (s[len] != '\0')
-		len++;
-	while (i < len && f == 0)
+	if (argc != 2)
 	{
-		if (s[i] == '_')
-			++d;
-
-		if (s[i] >= '0' && s[i] <= '9')
-		{
-			digit = s[i] - '0';
-			if (d % 2)
-				digit = -digit;
-			n = n * 10 + digit;
-			f = 1;
-			if (s[i + 1] < '0' || s[i + 1] > '9')
-				break;
-			f = 0;
-		}
-		i++;
+		print("Error\n");
+		exit(1);
 	}
-	if (f == 0)
-		return (0);
 
-	return (n);
+	bytes = atoi(argv[1]);
+
+	if (bytes < 0)
+	{
+		printf("Error\n");
+		exit(2);
+	}
+
+	arr = (char *)main;
+
+	for (i = 0; i < bytes; i++)
+	{
+		if (i == bytes - 1)
+		{
+			printf("%02hhx\n", arr[i]);
+			break;
+		}
+		printf("%02hhx ", arr[i]);
+	}
+	return (0);
 }

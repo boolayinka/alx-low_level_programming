@@ -9,31 +9,31 @@
  */
 char *argstostr(int ac, char **av)
 {
-	int i, j, k, len;
+	int a, b, c = 0, d = 0;
 	char *str;
 
 	if (ac == 0 || av == NULL)
 		return (NULL);
-	for (i = 0; i < ac; i++)
+	for (a = 0; a < ac; a++)
 	{
-		for (j = 0; av[i][j] != '\0'; j++)
-			len++;
-		len++;
+		for (b = 0; av[a][b]; b++)
+			d++;
 	}
-	str = malloc(sizeof(char) * (len + 1));
-
+	d += ac;
+	str = malloc(sizeof(char) * d + 1);
 	if (str == NULL)
 		return (NULL);
-	k = 0;
-	for (i = 0; i < ac; i++)
+	for (a = 0; a < ac; a++)
 	{
-		for (j = 0; av[i][j] != '\0'; j++)
+		for (b = 0; av[a][b]; b++)
 		{
-			str[k] = av[i][j];
-			k++;
+			str[c] = av[a][b];
+			c++;
 		}
-		str[k] = '\n';
-		k++;
+		if (str[c] == '\0')
+		{
+			str[c++] = '\n';
+		}
 	}
 	return (str);
 }
